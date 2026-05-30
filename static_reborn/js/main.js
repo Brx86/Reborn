@@ -1,20 +1,23 @@
 const options = {
     data() {
+        const params = new URLSearchParams(window.location.search);
         return {
-            protocol: 'http',
+            protocol: window.location.protocol || 'http:',
             url: window.location.host,
+            lang: params.get('lang') || '',
         };
     },
     methods: {
         handleSelect(key) {
+            const base = window.location.pathname;
             if (key == '1') {
-                location.href = this.protocol + "://" + this.url + '/reborn';
+                location.href = base;
             }
             else if (key == '2-1') {
-                location.href = this.protocol + "://" + this.url + '/reborn';
+                location.href = base;
             }
             else if (key == '2-2') {
-                location.href = this.protocol + "://" + this.url + '/reborn?lang=en';
+                location.href = base + '?lang=en';
             }
             else if (key == '3') {
                 window.open("https://github.com/Uahh/Reborn")

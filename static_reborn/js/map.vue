@@ -108,17 +108,12 @@ module.exports = {
     methods: {
         getData() {
             var that = this
-            $.ajax({
-                type: "get",
-                url: this.protocol + '://' + this.url + '/reborn/getData',
-                async: false,
-                success: function (result) {
-                    result = eval(result)
+            fetch('data/result.json')
+                .then(response => response.json())
+                .then(result => {
                     that.data = result
-                }
-            })
-            this.init()
-            // console.log(this.data)
+                    that.init()
+                })
         },
         init() {
             this.myChart = echarts.init(document.getElementById('chart'))
